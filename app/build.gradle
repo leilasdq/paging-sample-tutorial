@@ -54,10 +54,18 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$rootProject.hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_version"
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
+    implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
     implementation "androidx.activity:activity-ktx:1.5.0"
 
     // paging
     implementation "androidx.paging:paging-runtime-ktx:$rootProject.paging_version"
     // alternatively - without Android dependencies for tests
     testImplementation "androidx.paging:paging-common-ktx:$rootProject.paging_version"
+
+    // navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.nav_version"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$rootProject.nav_version"
+    androidTestImplementation "androidx.navigation:navigation-testing:$rootProject.nav_version"
+    implementation "androidx.navigation:navigation-compose:$rootProject.nav_version"
 }
