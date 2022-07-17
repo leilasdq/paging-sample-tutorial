@@ -7,14 +7,17 @@ import kotlinx.coroutines.flow.flow
 
 interface MoviesRepository {
 
-    suspend fun getAllMoviesByPage(): Flow<Movies>
+    suspend fun getAllMoviesByPage(): Flow<List<Movies>>
 }
 
 class MoviesRepositoryImpl(
-    val remoteService: MoviesService
+    private val remoteService: MoviesService
 ): MoviesRepository {
-    override suspend fun getAllMoviesByPage(): Flow<Movies> {
-
+    override suspend fun getAllMoviesByPage(): Flow<List<Movies>> = flow {
+        val data = remoteService.getPAgedMovies(1).data.map {
+            it.toDomain()
+        }
+        emit(data)
     }
 
 }
