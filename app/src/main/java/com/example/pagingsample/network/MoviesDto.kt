@@ -1,4 +1,4 @@
-package com.example.pagingsample.di
+package com.example.pagingsample.network
 
 data class MoviesDto(
     val id: Int,
