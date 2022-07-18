@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/leila/AndroidStudioProjects/Pagingsample/app/src/main/res/drawable/bg_oval_second_brand.xml" value="0.1615" />
+        <entry key="..\:/Users/leila/AndroidStudioProjects/Pagingsample/app/src/main/res/drawable/bg_round_brand.xml" value="0.1615" />
         <entry key="..\:/Users/leila/AndroidStudioProjects/Pagingsample/app/src/main/res/drawable/ic_load_image_error.xml" value="0.2625" />
         <entry key="..\:/Users/leila/AndroidStudioProjects/Pagingsample/app/src/main/res/layout/activity_main.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/leila/AndroidStudioProjects/Pagingsample/app/src/main/res/layout/fragment_kist.xml" value="0.20471014492753623" />
