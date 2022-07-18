@@ -9,7 +9,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.pagingsample.R
 
 fun glideOptions() = RequestOptions()
-    .centerCrop()
     .placeholder(R.drawable.ic_loading)
     .error(R.drawable.ic_load_image_error)
     .diskCacheStrategy(DiskCacheStrategy.ALL)

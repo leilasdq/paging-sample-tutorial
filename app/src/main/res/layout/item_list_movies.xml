@@ -11,7 +11,7 @@
 
         <variable
             name="rating"
-            type="Float" />
+            type="String" />
 
         <variable
             name="title"
@@ -23,7 +23,7 @@
 
         <variable
             name="year"
-            type="Integer" />
+            type="String" />
 
         <variable
             name="description"
@@ -35,18 +35,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_second_background"
-        android:layout_marginTop="@dimen/dimen_margin_small"
-        android:layout_marginHorizontal="@dimen/dimen_margin_small">
+        android:layout_margin="@dimen/dimen_margin_small">
 
-        <com.google.android.material.imageview.ShapeableImageView
+        <ImageView
             android:id="@+id/img_poster"
             style="@style/MyOutlinedImageViewStyle"
             imageUrl="@{url}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             tools:src="@drawable/ic_launcher_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/guideline2"/>
 
         <TextView
             android:id="@+id/tv_rating"
@@ -63,20 +64,35 @@
             tools:text="9.3"/>
 
         <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.2" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/dimen_margin_small"
                 android:layout_marginBottom="@dimen/dimen_margin_small"
                 android:paddingBottom="@dimen/dimen_margin_small"
                 app:layout_constraintTop_toTopOf="@id/guideline"
-                app:layout_constraintStart_toEndOf="@id/tv_rating">
+                app:layout_constraintStart_toEndOf="@id/tv_rating"
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
                     android:id="@+id/tv_title"
