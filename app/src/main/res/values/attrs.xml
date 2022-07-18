@@ -2,4 +2,5 @@
 <resources>
     <attr name="widget.text.primary" format="reference"/>
     <attr name="widget.text.secondary" format="reference"/>
+    <attr name="widget.cardView" format="reference"/>
 </resources>

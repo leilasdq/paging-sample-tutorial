@@ -9,11 +9,13 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:windowBackground">@color/color_background</item>
         <item name="widget.text.primary">@style/MyPrimaryTextStyle</item>
         <item name="widget.text.secondary">@style/MySecondaryTextStyle</item>
+        <item name="appBarLayoutStyle">@style/MyAppbarStyle</item>
         <item name="toolbarStyle">@style/MyToolbarStyle</item>
+        <item name="widget.cardView">@style/MyCardViewStyle</item>
     </style>
 
     <style name="Theme.PagingSample" parent="Base.Theme.StyleTraining">
@@ -35,12 +37,28 @@
 
     <style name="ToolbarTitle" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">@color/color_brand</item>
-        <item name="backgroundColor">@color/color_second_background</item>
-        <item name="background">@color/color_second_background</item>
     </style>
 
-    <style name="MyToolbarStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="titleTextStyle">@style/ToolbarTitle</item>
-        <item name="elevation">@dimen/dimen_toolbar_elevation</item>
+    <style name="MyAppbarStyle" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:background">@color/color_second_background</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:elevation">@dimen/dimen_toolbar_elevation</item>
+    </style>
+
+    <style name="MyToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
+        <item name="titleTextAppearance">@style/ToolbarTitle</item>
+        <item name="background">@color/color_second_background</item>
+        <item name="titleTextColor">@color/color_brand</item>
+        <item name="android:layout_margin">0dp</item>
+    </style>
+
+    <style name="MyCardViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/color_second_background</item>
+        <item name="cardCornerRadius">@dimen/dimen_main_radius</item>
+        <item name="cardElevation">@dimen/dimen_main_elevation</item>
+    </style>
+
+    <style name="MyOutlinedImageViewStyle">
+        <item name="cornerSize">@dimen/dimen_main_radius</item>
     </style>
 </resources>
