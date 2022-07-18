@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_text_primary">14sp</dimen>
+    <dimen name="dimen_text_secondary">12sp</dimen>
+
+    <dimen name="dimen_toolbar_elevation">5dp</dimen>
+    <dimen name="dimen_main_radius">5dp</dimen>
+
+    <dimen name="dimen_margin_tiny">4dp</dimen>
+    <dimen name="dimen_margin_small">8dp</dimen>
+    <dimen name="dimen_margin_normal">16dp</dimen>
+</resources>
