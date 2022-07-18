@@ -14,4 +14,7 @@
     <color name="color_second_background">#fff</color>
     <color name="color_primary_text">#000</color>
     <color name="color_secondary_text">#3C3C3C</color>
+
+    <color name="color_error">#F82111</color>
+    <color name="color_success">#1DC524</color>
 </resources>

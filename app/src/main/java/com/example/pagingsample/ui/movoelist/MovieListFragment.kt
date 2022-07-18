@@ -1,4 +1,4 @@
-package com.example.pagingsample.ui
+package com.example.pagingsample.ui.movoelist
 
 import android.os.Bundle
 import android.util.Log
@@ -12,12 +12,12 @@ import com.example.pagingsample.R
 class MovieListFragment: Fragment(R.layout.fragment_movie_list) {
 
     private val TAG = "leila_Movies"
-    private val viewModel: ListViewModel by viewModels()
+    private val viewModelMovie: MovieListViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.movieList.observe(viewLifecycleOwner) {
+        viewModelMovie.movieList.observe(viewLifecycleOwner) {
             it.forEach {
                 Log.d(TAG, "onCreate: list item = $it")
             }

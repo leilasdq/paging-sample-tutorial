@@ -1,4 +1,4 @@
-package com.example.pagingsample.ui
+package com.example.pagingsample.ui.movoelist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ListViewModel @Inject constructor(
+class MovieListViewModel @Inject constructor(
     private val repo: MoviesRepository
 ): ViewModel() {
 
