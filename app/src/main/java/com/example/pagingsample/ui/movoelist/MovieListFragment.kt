@@ -36,7 +36,7 @@ class MovieListFragment: Fragment(R.layout.fragment_movie_list) {
         binding.recycle.adapter = adapter
 
         viewModelMovie.movieList.observe(viewLifecycleOwner) { movies ->
-            adapter.submitList(movies)
+            adapter.submitData(lifecycle, movies)
         }
     }
 }

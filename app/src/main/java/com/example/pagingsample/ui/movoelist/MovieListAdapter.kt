@@ -2,13 +2,14 @@ package com.example.pagingsample.ui.movoelist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pagingsample.databinding.ItemListMoviesBinding
 import com.example.pagingsample.model.Movies
 
-class MovieListAdapter: ListAdapter<Movies, MovieListAdapter.MoviesViewHolder>(MoviesDiffUtil()) {
+class MovieListAdapter: PagingDataAdapter<Movies, MovieListAdapter.MoviesViewHolder>(MoviesDiffUtil()) {
 
     class MoviesViewHolder(
         private val binding: ItemListMoviesBinding
@@ -19,7 +20,7 @@ class MovieListAdapter: ListAdapter<Movies, MovieListAdapter.MoviesViewHolder>(M
                 title = item.title
                 rating = item.rating
                 var genreString = ""
-                item.genres.forEach {
+                item.genres?.forEach {
                     genreString += "$it, "
                 }
                 genres = genreString.substring(0, genreString.length - 1)
@@ -43,7 +44,7 @@ class MovieListAdapter: ListAdapter<Movies, MovieListAdapter.MoviesViewHolder>(M
         )
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
     }
 }
 
