@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dimen_margin_small"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/tets" />
+            tools:listitem="@layout/item_list_movies" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

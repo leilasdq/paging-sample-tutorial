@@ -34,8 +34,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_second_background"
+        android:background="@color/color_background"
         android:layout_margin="@dimen/dimen_margin_small">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
 
         <ImageView
             android:id="@+id/img_poster"
@@ -43,6 +50,7 @@
             imageUrl="@{url}"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:elevation="8dp"
             tools:src="@drawable/ic_launcher_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
@@ -54,12 +62,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?widget.text.secondary"
+            android:elevation="8dp"
             android:background="@drawable/bg_round_brand"
             app:layout_constraintStart_toEndOf="@id/img_poster"
             app:layout_constraintEnd_toEndOf="@id/img_poster"
             app:layout_constraintBottom_toBottomOf="@id/img_poster"
             android:layout_marginBottom="@dimen/dimen_margin_small"
-            android:padding="@dimen/dimen_margin_normal"
+            android:padding="@dimen/dimen_margin_small"
             android:text="@{rating.toString()}"
             tools:text="9.3"/>
 
@@ -71,28 +80,32 @@
             app:layout_constraintGuide_percent="0.25" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.2" />
-
-        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.9" />
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_margin_small"
+            app:layout_constraintTop_toBottomOf="@id/guideline">
+
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="@dimen/dimen_margin_small"
-                android:layout_marginBottom="@dimen/dimen_margin_small"
-                android:paddingBottom="@dimen/dimen_margin_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_margin_small"
                 app:layout_constraintTop_toTopOf="@id/guideline"
                 app:layout_constraintStart_toEndOf="@id/tv_rating"
                 app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_vertical2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.3" />
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -101,7 +114,7 @@
                     android:text="@{title}"
                     tools:text="Title of film"
                     style="@style/MyBoldPrimaryTextStyle"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/guideline_vertical2"
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
@@ -112,7 +125,7 @@
                     tools:text="genres1, genre2"
                     style="?widget.text.secondary"
                     android:layout_marginTop="@dimen/dimen_margin_tiny"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/guideline_vertical2"
                     app:layout_constraintTop_toBottomOf="@id/tv_title"/>
 
                 <TextView
@@ -121,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_oval_second_brand"
                     app:layout_constraintTop_toBottomOf="@id/tv_genres"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/guideline_vertical2"
                     style="?widget.text.secondary"
                     android:layout_marginTop="@dimen/dimen_margin_normal"
                     android:paddingHorizontal="@dimen/dimen_margin_normal"
@@ -133,13 +146,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/tv_year"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/guideline_vertical2"
                     style="?widget.text.secondary"
                     android:layout_marginTop="@dimen/dimen_margin_small"
                     android:text="@{description}"
                     tools:text="ajdfahdjkfalkdfdjfakjfkafkldjfkhncihfkjc"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
