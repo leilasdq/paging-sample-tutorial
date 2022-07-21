@@ -33,10 +33,17 @@ class MovieListFragment: Fragment(R.layout.fragment_movie_list) {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = MovieListAdapter()
-        binding.moviesList.adapter = adapter
+        binding.moviesList.adapter = adapter.withLoadStateHeaderAndFooter(
+            header = MoviesLoadStateAdapter { movieListRetryFunction() },
+            footer = MoviesLoadStateAdapter { movieListRetryFunction() }
+        )
 
         viewModelMovie.movieList.observe(viewLifecycleOwner) { movies ->
             adapter.submitData(lifecycle, movies)
         }
+    }
+
+    fun movieListRetryFunction() {
+        adapter.retry()
     }
 }
