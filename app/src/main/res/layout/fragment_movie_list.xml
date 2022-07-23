@@ -21,13 +21,29 @@
                 app:title="@string/app_name" />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/movies_list"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dimen_margin_small"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_list_movies" />
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/img_empty_list"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/no_result"
+                android:layout_gravity="center" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/movies_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_margin_small"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_list_movies" />
+
+        </FrameLayout>
+
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
