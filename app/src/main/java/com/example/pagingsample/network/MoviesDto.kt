@@ -3,7 +3,7 @@ package com.example.pagingsample.network
 import com.google.gson.annotations.SerializedName
 
 data class MoviesDto(
-    val id: Int?,
+    val id: Int,
     val title: String?,
     val poster: String?,
     val genres: List<String>?,

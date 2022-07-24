@@ -1,6 +1,11 @@
-package com.example.pagingsample.model
+package com.example.pagingsample.local
 
-data class Movies(
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "movie")
+data class MoviesEntity(
+    @PrimaryKey
     val id: Int,
     val title: String?,
     val poster: String?,
