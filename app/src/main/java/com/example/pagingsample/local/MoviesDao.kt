@@ -13,5 +13,5 @@ interface MoviesDao {
     suspend fun insertAllMovies(movies: List<MoviesEntity>)
 
     @Query("SELECT * FROM movie")
-    suspend fun getAllMovies(): PagingSource<Int, MoviesEntity>
+    fun getAllMovies(): PagingSource<Int, MoviesEntity>
 }

@@ -78,11 +78,13 @@ dependencies {
 
     // room
     implementation "androidx.room:room-runtime:$rootProject.room_version"
-    annotationProcessor "androidx.room:room-compiler:$rootProject.room_version"
+    //annotationProcessor "androidx.room:room-compiler:$rootProject.room_version"
     // optional - Guava support for Room, including Optional and ListenableFuture
     implementation "androidx.room:room-guava:$rootProject.room_version"
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$rootProject.room_version"
     // optional - Paging 3 Integration
     implementation "androidx.room:room-paging:2.5.0-alpha02"
+    kapt "androidx.room:room-compiler:2.5.0-alpha02"
+    implementation "androidx.room:room-ktx:$rootProject.room_version"
 }
