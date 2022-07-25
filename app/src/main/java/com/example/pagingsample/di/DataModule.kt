@@ -2,6 +2,7 @@ package com.example.pagingsample.di
 
 import com.example.pagingsample.data.MoviesRepository
 import com.example.pagingsample.data.MoviesRepositoryImpl
+import com.example.pagingsample.local.MoviesDao
 import com.example.pagingsample.network.MoviesService
 import dagger.Module
 import dagger.Provides
@@ -15,6 +16,6 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideMoviesRepository(moviesService: MoviesService): MoviesRepository =
-        MoviesRepositoryImpl(moviesService)
+    fun provideMoviesRepository(moviesService: MoviesService, moviesDao: MoviesDao): MoviesRepository =
+        MoviesRepositoryImpl(moviesService, moviesDao)
 }
