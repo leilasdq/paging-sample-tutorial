@@ -1,31 +1,70 @@
 package com.example.pagingsample.data
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
+import com.example.pagingsample.BuildConfig
 import com.example.pagingsample.local.MoviesDao
 import com.example.pagingsample.local.MoviesEntity
-import com.example.pagingsample.model.Movies
 import com.example.pagingsample.network.MoviesService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import retrofit2.HttpException
+import java.io.IOException
 import java.lang.Exception
+import java.net.UnknownHostException
+import java.util.concurrent.TimeUnit
+import javax.net.ssl.SSLHandshakeException
 
 @OptIn(ExperimentalPagingApi::class)
 class MoviesRemoteMediator(
-    private val remoteService: MoviesService, private val local: MoviesDao
+    private val remoteService: MoviesService, private val localDao: MoviesDao
 ): RemoteMediator<Int, MoviesEntity>() {
-    var startingPage = 1
     override suspend fun load(loadType: LoadType, state: PagingState<Int, MoviesEntity>): MediatorResult {
         return try {
-            val remoteData = remoteService.getPagedMovies(startingPage)
-            val isEndOfList = remoteData.data.isNullOrEmpty()
-            local.insertAllMovies(remoteData.data.map {
-                it.toEntity()
-            })
+            // The network load method takes an optional `after=<user.id>` parameter. For every
+            // page after the first, we pass the last user ID to let it continue from where it
+            // left off. For REFRESH, pass `null` to load the first page.
+            val loadKey = when (loadType) {
+                LoadType.REFRESH -> 1
+                // In this example, we never need to prepend, since REFRESH will always load the
+                // first page in the list. Immediately return, reporting end of pagination.
+                LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = false)
+                LoadType.APPEND -> {
+                    val lastItem = state.lastItemOrNull()
 
-            MediatorResult.Success(isEndOfList)
-        } catch (e: Exception) {
+                    // We must explicitly check if the last item is `null` when appending,
+                    // since passing `null` to networkService is only valid for initial load.
+                    // If lastItem is `null` it means no items were loaded after the initial
+                    // REFRESH and there are no more items to load.
+                    if (lastItem == null) {
+                        return MediatorResult.Success(endOfPaginationReached = true)
+                    }
+
+                    lastItem.id
+                }
+            }
+
+            // Suspending network load via Retrofit. This doesn't need to be wrapped in a
+            // withContext(Dispatcher.IO) { ... } block since Retrofit's Coroutine CallAdapter
+            // dispatches on a worker thread.
+            val response = loadKey.let { remoteService.getPagedMovies(it) }
+
+            response.data.map {
+                it.toEntity()
+            }.let { localDao.insertAllMovies(it) }
+
+            MediatorResult.Success(endOfPaginationReached = response.data.isEmpty())
+        } catch (e: IOException) {
+            MediatorResult.Error(e)
+        } catch (e: HttpException) {
             MediatorResult.Error(e)
         }
+    }
+
+    override suspend fun initialize(): InitializeAction {
+       return InitializeAction.LAUNCH_INITIAL_REFRESH
     }
 }
