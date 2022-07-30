@@ -8,14 +8,14 @@ import com.google.gson.reflect.TypeToken
 abstract class BaseConvertor<T> {
 
     @TypeConverter
-    fun mapListToString(value: List<T>): String {
+    fun mapListToString(value: List<T>?): String {
         val gson = Gson()
         val type = object : TypeToken<List<T>>() {}.type
         return gson.toJson(value, type)
     }
 
     @TypeConverter
-    fun mapStringToList(value: String): List<T> {
+    fun mapStringToList(value: String): List<T>? {
         val gson = Gson()
         val type = object : TypeToken<List<T>>() {}.type
         return gson.fromJson(value, type)

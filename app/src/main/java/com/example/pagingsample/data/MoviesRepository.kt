@@ -26,7 +26,7 @@ class MoviesRepositoryImpl(
             initialLoadSize = 8
         ),
         pagingSourceFactory = {
-            MoviesPagingSource(remoteService)
+            localDao.getAllMovies()
         },
         remoteMediator = MoviesRemoteMediator(remoteService, localDao),
         initialKey = null

@@ -41,5 +41,7 @@ Thumbs.db
 .idea/datasources.xml
 .idea/dataSources.ids
 
-.lock
-.bin
+*.lock
+*.bin
+
+workspace.xml

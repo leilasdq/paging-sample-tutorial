@@ -1,34 +1,27 @@
 package com.example.pagingsample.data
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
-import com.example.pagingsample.BuildConfig
 import com.example.pagingsample.local.MoviesDao
 import com.example.pagingsample.local.MoviesEntity
 import com.example.pagingsample.network.MoviesService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
-import java.lang.Exception
-import java.net.UnknownHostException
-import java.util.concurrent.TimeUnit
-import javax.net.ssl.SSLHandshakeException
 
 @OptIn(ExperimentalPagingApi::class)
 class MoviesRemoteMediator(
     private val remoteService: MoviesService, private val localDao: MoviesDao
 ): RemoteMediator<Int, MoviesEntity>() {
+    var offset = 1
     override suspend fun load(loadType: LoadType, state: PagingState<Int, MoviesEntity>): MediatorResult {
         return try {
             // The network load method takes an optional `after=<user.id>` parameter. For every
             // page after the first, we pass the last user ID to let it continue from where it
             // left off. For REFRESH, pass `null` to load the first page.
             val loadKey = when (loadType) {
-                LoadType.REFRESH -> 1
+                LoadType.REFRESH -> offset
                 // In this example, we never need to prepend, since REFRESH will always load the
                 // first page in the list. Immediately return, reporting end of pagination.
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = false)
@@ -43,7 +36,8 @@ class MoviesRemoteMediator(
                         return MediatorResult.Success(endOfPaginationReached = true)
                     }
 
-                    lastItem.id
+                    offset += 1
+                    offset
                 }
             }
 
